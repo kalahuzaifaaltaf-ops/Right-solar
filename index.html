@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIGHT Solar — Pakistan's Trusted Solar Energy Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0B1526;
+    --night-2:#122036;
+    --night-3:#1A2C48;
+    --dawn-amber:#FFB627;
+    --dawn-orange:#FF7A45;
+    --eco-teal:#2BD4A0;
+    --text-hi:#EEF4FF;
+    --text-lo:#93A6C4;
+    --line:rgba(147,166,196,0.16);
+    --radius:14px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  html[data-theme="light"]{
+    --night:#F6F4EE;
+    --night-2:#FFFFFF;
+    --night-3:#EDE9DE;
+    --dawn-amber:#E08A1E;
+    --dawn-orange:#D9622E;
+    --eco-teal:#12A47C;
+    --text-hi:#151B26;
+    --text-lo:#5B6478;
+    --line:rgba(21,27,38,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--night);
+    color:var(--text-hi);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+    transition:background .35s ease, color .35s ease;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+  section{position:relative; padding:100px 24px;}
+  .wrap{max-width:1180px; margin:0 auto;}
+  .eyebrow{
+    font-family:var(--mono); text-transform:uppercase; letter-spacing:0.12em;
+    font-size:12px; color:var(--dawn-amber); display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:''; width:24px; height:1px; background:var(--dawn-amber);}
+  h1,h2,h3,h4{font-family:var(--display); font-weight:600; letter-spacing:-0.01em;}
+  h2{font-size:clamp(28px,4vw,42px); margin-bottom:16px;}
+  .lede{color:var(--text-lo); font-size:17px; max-width:640px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:999px; font-weight:600; font-size:14.5px;
+    cursor:pointer; border:1px solid transparent; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    font-family:var(--body);
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-orange)); color:#1A0F02;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,140,60,0.35);}
+  .btn-ghost{border-color:var(--line); color:var(--text-hi); background:rgba(255,255,255,0.02);}
+  .btn-ghost:hover{border-color:var(--dawn-amber); color:var(--dawn-amber);}
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; backdrop-filter:blur(14px);
+    background:rgba(11,21,38,0.72); border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-size:19px; font-weight:700;}
+  .logo-mark{width:30px; height:30px; position:relative;}
+  nav.mainnav{display:flex; gap:30px; font-size:14.5px; color:var(--text-lo);}
+  nav.mainnav a:hover{color:var(--dawn-amber);}
+  .header-cta{display:flex; align-items:center; gap:14px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; color:var(--text-hi);
+  }
+  .menu-toggle{display:none; background:none; border:none; color:var(--text-hi); font-size:24px; cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:180px 24px 100px;
+    background:
+      radial-gradient(ellipse 800px 500px at 15% -10%, rgba(255,182,39,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(43,212,160,0.12), transparent 60%);
+    position:relative;
+  }
+  .sun-arc{
+    position:absolute; top:60px; right:6%; width:340px; height:340px; pointer-events:none;
+    opacity:0.9;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;}
+  .hero h1{font-size:clamp(38px,5.2vw,64px); line-height:1.05; margin-bottom:22px;}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-orange)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero .lede{margin-bottom:34px; font-size:18px;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:44px;}
+  .hero-stats{display:flex; gap:36px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:var(--mono); font-size:26px; color:var(--dawn-amber);}
+  .stat span{font-size:13px; color:var(--text-lo);}
+
+  /* calculator card - signature element */
+  .calc-card{
+    background:linear-gradient(160deg, var(--night-2), var(--night-3));
+    border:1px solid var(--line); border-radius:20px; padding:32px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    position:relative; overflow:hidden;
+  }
+  .calc-card::before{
+    content:''; position:absolute; top:-40%; right:-40%; width:280px; height:280px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,182,39,0.25), transparent 70%);
+  }
+  .calc-card h3{font-size:15px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-lo); margin-bottom:6px; font-family:var(--mono); font-weight:500;}
+  .calc-card .calc-title{font-family:var(--display); font-size:22px; color:var(--text-hi); margin-bottom:24px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:13px; color:var(--text-lo); margin-bottom:8px;}
+  .slider-row{display:flex; align-items:center; gap:14px;}
+  input[type=range]{
+    -webkit-appearance:none; flex:1; height:4px; border-radius:2px; background:var(--night); outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+    background:var(--dawn-amber); cursor:pointer; border:3px solid var(--night-2); box-shadow:0 0 0 2px var(--dawn-amber);
+  }
+  select, input[type=text], input[type=tel], input[type=email]{
+    width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line);
+    background:rgba(255,255,255,0.03); color:var(--text-hi); font-family:var(--body); font-size:14.5px;
+  }
+  select:focus, input:focus{outline:2px solid var(--dawn-amber); outline-offset:1px;}
+  .slider-val{font-family:var(--mono); color:var(--dawn-amber); min-width:56px; text-align:right; font-size:14px;}
+  .calc-result{
+    margin-top:22px; padding-top:22px; border-top:1px dashed var(--line);
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  }
+  .calc-result .r-item b{display:block; font-family:var(--mono); font-size:22px; color:var(--eco-teal);}
+  .calc-result .r-item span{font-size:12px; color:var(--text-lo);}
+
+  /* ===== Cart badge ===== */
+  .cart-badge{
+    position:absolute; top:-4px; right:-4px; background:var(--dawn-amber); color:#1A0F02;
+    font-family:var(--mono); font-size:10px; font-weight:700; width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; transition:transform .2s ease;
+  }
+  .cart-badge.bump{transform:scale(1.3);}
+
+  /* ===== Shop ===== */
+  .shop-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px;}
+  .shop-card{
+    background:var(--night-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; transition:transform .3s ease, border-color .3s ease;
+  }
+  .shop-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber);}
+  .shop-thumb{
+    aspect-ratio:4/3; border-radius:10px; margin-bottom:16px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(150deg, var(--night-3), var(--night-2));
+  }
+  .shop-thumb svg{width:46%; height:46%; color:var(--dawn-amber);}
+  .shop-card h4{font-size:15.5px; margin-bottom:4px;}
+  .shop-card .shop-desc{font-size:12.5px; color:var(--text-lo); margin-bottom:14px; flex:1;}
+  .shop-price-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
+  .shop-price{font-family:var(--mono); font-size:17px; color:var(--eco-teal); font-weight:600;}
+  .shop-unit{font-size:11px; color:var(--text-lo);}
+  .add-cart-btn{
+    width:100%; padding:11px; border-radius:10px; border:1px solid var(--dawn-amber); background:none;
+    color:var(--dawn-amber); font-family:var(--body); font-weight:600; font-size:13.5px; cursor:pointer;
+    transition:background .25s ease, color .25s ease;
+  }
+  .add-cart-btn:hover{background:var(--dawn-amber); color:#1A0F02;}
+  .add-cart-btn.added{background:var(--eco-teal); border-color:var(--eco-teal); color:#06251C;}
+
+  /* ===== Cart drawer ===== */
+  .cart-overlay{
+    position:fixed; inset:0; background:rgba(5,10,20,0.55); backdrop-filter:blur(2px);
+    z-index:400; opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .cart-overlay.open{opacity:1; pointer-events:auto;}
+  .cart-drawer{
+    position:fixed; top:0; right:0; bottom:0; width:min(420px, 92vw); background:var(--night-2);
+    border-left:1px solid var(--line); z-index:401; display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform .35s ease;
+  }
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-head{display:flex; align-items:center; justify-content:space-between; padding:22px; border-bottom:1px solid var(--line);}
+  .cart-head h3{font-size:18px;}
+  .cart-close{background:none; border:none; color:var(--text-hi); font-size:22px; cursor:pointer; line-height:1;}
+  .cart-body{flex:1; overflow-y:auto; padding:18px 22px;}
+  .cart-empty{color:var(--text-lo); font-size:14px; text-align:center; padding:60px 0;}
+  .cart-item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .cart-item-thumb{width:56px; height:56px; border-radius:8px; background:linear-gradient(150deg,var(--night-3),var(--night)); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .cart-item-thumb svg{width:60%; height:60%; color:var(--dawn-amber);}
+  .cart-item-info{flex:1; min-width:0;}
+  .cart-item-info h5{font-size:13.5px; margin-bottom:3px;}
+  .cart-item-price{font-family:var(--mono); font-size:12.5px; color:var(--eco-teal);}
+  .qty-control{display:flex; align-items:center; gap:8px; margin-top:8px;}
+  .qty-btn{width:22px; height:22px; border-radius:6px; border:1px solid var(--line); background:none; color:var(--text-hi); cursor:pointer; font-size:13px; line-height:1;}
+  .qty-num{font-family:var(--mono); font-size:13px; min-width:16px; text-align:center;}
+  .cart-item-remove{background:none; border:none; color:var(--text-lo); font-size:12px; cursor:pointer; text-decoration:underline; margin-top:6px;}
+  .cart-foot{padding:20px 22px; border-top:1px solid var(--line);}
+  .cart-subtotal{display:flex; justify-content:space-between; font-size:15px; margin-bottom:16px;}
+  .cart-subtotal b{font-family:var(--mono); color:var(--dawn-amber);}
+
+  /* ===== Checkout ===== */
+  .checkout-body{padding:22px;}
+  .checkout-body .form-row{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;}
+  .checkout-body .form-row.full{grid-template-columns:1fr;}
+  .checkout-body label{display:block; font-size:12.5px; color:var(--text-lo); margin-bottom:6px;}
+  .pay-options{display:flex; flex-direction:column; gap:10px; margin-bottom:16px;}
+  .pay-option{display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:10px; padding:12px 14px; cursor:pointer; font-size:13.5px;}
+  .pay-option input{accent-color:var(--dawn-amber);}
+  .order-summary-mini{background:var(--night); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:16px; font-size:13px; color:var(--text-lo);}
+  .order-success{text-align:center; padding:40px 22px;}
+  .order-success .tick{width:56px; height:56px; border-radius:50%; background:var(--eco-teal); color:#06251C; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:26px;}
+  .back-link{background:none; border:none; color:var(--dawn-amber); font-size:13px; cursor:pointer; margin-bottom:14px; display:inline-flex; align-items:center; gap:6px;}
+
+  /* ===== Admin panel ===== */
+  .admin-panel{
+    position:fixed; top:0; right:0; bottom:0; width:min(460px, 94vw); background:var(--night-2);
+    border-left:1px solid var(--line); z-index:401; display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform .35s ease;
+  }
+  .admin-panel.open{transform:translateX(0);}
+  .admin-order-card{background:var(--night); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:12px;}
+  .admin-order-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;}
+  .admin-order-id{font-family:var(--mono); color:var(--dawn-amber); font-size:13px;}
+  .admin-order-time{font-size:11px; color:var(--text-lo);}
+  .admin-order-status{font-size:10.5px; font-family:var(--mono); padding:3px 9px; border-radius:999px; border:1px solid var(--eco-teal); color:var(--eco-teal); cursor:pointer;}
+  .admin-order-status.fulfilled{background:var(--eco-teal); color:#06251C;}
+  .admin-order-field{font-size:13px; margin-bottom:3px;}
+  .admin-order-field b{color:var(--text-lo); font-weight:500;}
+  .admin-order-items{font-size:12.5px; color:var(--text-lo); margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);}
+
+  /* ===== Marquee brands ===== */
+  /* ===== Photo showcase ===== */
+  .photo-strip{padding:0 24px 90px;}
+  .photo-grid{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr; gap:18px;}
+  .photo-box{position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--line); min-height:340px;}
+  .photo-box img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; filter:saturate(1.05) contrast(1.03);}
+  .photo-caption{position:absolute; left:20px; bottom:20px; right:20px; background:rgba(11,21,38,0.65); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.12); padding:14px 18px; border-radius:12px;}
+  .photo-caption b{font-family:var(--display); font-size:15px; display:block; color:#fff;}
+  .photo-caption span{font-size:12.5px; color:#C9D6EA;}
+
+  .marquee-strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0; overflow:hidden; background:var(--night-2);}
+  .marquee-track{display:flex; gap:70px; width:max-content; animation:scroll-left 28s linear infinite; align-items:center;}
+  .marquee-track span{font-family:var(--mono); font-size:13px; color:var(--text-lo); letter-spacing:0.06em; white-space:nowrap;}
+  @keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ===== Products ===== */
+  .card-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:44px;}
+  .p-card{
+    background:var(--night-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:transform .3s ease, border-color .3s ease;
+  }
+  .p-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber);}
+  .p-card .p-icon{width:40px; height:40px; margin-bottom:18px; color:var(--dawn-amber);}
+  .p-card h4{font-size:17px; margin-bottom:8px;}
+  .p-card p{font-size:13.5px; color:var(--text-lo);}
+
+  /* ===== Solutions tabs ===== */
+  .tabs-nav{display:flex; gap:10px; flex-wrap:wrap; margin:36px 0 32px;}
+  .tab-btn{
+    padding:10px 20px; border-radius:999px; border:1px solid var(--line); background:none;
+    color:var(--text-lo); font-family:var(--body); font-size:14px; cursor:pointer; transition:all .25s ease;
+  }
+  .tab-btn.active{background:var(--dawn-amber); color:#1A0F02; border-color:var(--dawn-amber); font-weight:600;}
+  .tab-panel{display:none; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+  .tab-panel.active{display:grid;}
+  .tab-visual{
+    aspect-ratio:4/3; border-radius:18px; background:linear-gradient(150deg, var(--night-3), var(--night-2));
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .tab-visual svg{width:70%; height:70%;}
+  .tab-copy ul{margin-top:20px; display:flex; flex-direction:column; gap:12px;}
+  .tab-copy li{display:flex; gap:10px; font-size:14.5px; color:var(--text-lo);}
+  .tab-copy li::before{content:'●'; color:var(--eco-teal); font-size:8px; margin-top:7px;}
+
+  /* ===== Process ===== */
+  .process-line{position:relative; margin-top:50px;}
+  .process-steps{display:grid; grid-template-columns:repeat(7,1fr); gap:12px;}
+  .p-step{text-align:center; padding-top:30px; position:relative;}
+  .p-step::before{
+    content:attr(data-n); position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:26px; height:26px; border-radius:50%; background:var(--night-2); border:1px solid var(--dawn-amber);
+    color:var(--dawn-amber); font-family:var(--mono); font-size:12px; display:flex; align-items:center; justify-content:center;
+  }
+  .p-step h5{font-size:13px; font-weight:600; margin-top:8px;}
+  .process-track{position:absolute; top:13px; left:8%; right:8%; height:1px; background:var(--line); z-index:0;}
+
+  /* ===== Projects grid ===== */
+  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px;}
+  .proj-card{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:var(--night-2); position:relative; aspect-ratio:4/3;}
+  .proj-card .ph{position:absolute; inset:0; background:linear-gradient(160deg,var(--night-3),var(--night)); display:flex; align-items:center; justify-content:center; color:var(--text-lo); font-family:var(--mono); font-size:12px;}
+  .proj-tag{position:absolute; top:14px; left:14px; background:rgba(11,21,38,0.7); backdrop-filter:blur(6px); padding:5px 12px; border-radius:999px; font-size:11px; font-family:var(--mono); color:var(--dawn-amber); border:1px solid rgba(255,182,39,0.3);}
+  .proj-info{position:absolute; bottom:0; left:0; right:0; padding:18px; background:linear-gradient(to top, rgba(11,21,38,0.95), transparent);}
+  .proj-info h5{font-size:15px;}
+  .proj-info span{font-size:12px; color:var(--text-lo);}
+
+  /* ===== FAQ ===== */
+  .faq-item{border-bottom:1px solid var(--line); padding:20px 0;}
+  .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:16px; font-weight:500; font-family:var(--display);}
+  .faq-q .plus{transition:transform .3s ease; color:var(--dawn-amber); font-size:20px;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease; color:var(--text-lo); font-size:14.5px;}
+  .faq-item.open .faq-a{max-height:200px; padding-top:14px;}
+
+  /* ===== Quote form section ===== */
+  .quote-section{
+    background:linear-gradient(150deg, var(--night-2), var(--night));
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .quote-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
+  .form-card{background:var(--night-2); border:1px solid var(--line); border-radius:18px; padding:32px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  .form-row.full{grid-template-columns:1fr;}
+  .form-note{font-size:12px; color:var(--text-lo); margin-top:14px;}
+
+  /* ===== Footer ===== */
+  footer{padding:70px 24px 30px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; margin-bottom:50px;}
+  .foot-col h5{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-lo); margin-bottom:16px; font-family:var(--mono); font-weight:500;}
+  .foot-col ul{display:flex; flex-direction:column; gap:10px;}
+  .foot-col a{font-size:14px; color:var(--text-hi); opacity:0.85;}
+  .foot-col a:hover{color:var(--dawn-amber);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; border-top:1px solid var(--line); font-size:13px; color:var(--text-lo); flex-wrap:wrap; gap:10px;}
+  .social-row{display:flex; gap:10px;}
+
+  /* ===== Floating widgets (advanced features) ===== */
+  .float-stack{position:fixed; right:24px; bottom:24px; display:flex; flex-direction:column; gap:12px; z-index:200;}
+  .fab{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,0.4); border:none; transition:transform .25s ease;
+  }
+  .fab:hover{transform:scale(1.08);}
+  .fab-whatsapp{background:#25D366; color:#fff;}
+  .fab-top{background:var(--night-2); border:1px solid var(--line); color:var(--text-hi); opacity:0; pointer-events:none; transition:opacity .3s ease;}
+  .fab-top.show{opacity:1; pointer-events:auto;}
+
+  .progress-bar{position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--dawn-amber),var(--eco-teal)); z-index:300; width:0%;}
+
+  [data-reveal]{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  [data-reveal].in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .shop-grid{grid-template-columns:repeat(2,1fr);}
+    .quote-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .process-steps{grid-template-columns:repeat(4,1fr); row-gap:30px;}
+    .process-track{display:none;}
+    nav.mainnav{display:none;}
+    .menu-toggle{display:block;}
+    .tab-panel.active{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .card-grid{grid-template-columns:1fr;}
+    .shop-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .process-steps{grid-template-columns:repeat(2,1fr);}
+    .form-row{grid-template-columns:1fr;}
+    .checkout-body .form-row{grid-template-columns:1fr;}
+    .hero-stats{gap:24px;}
+    section{padding:70px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+  <div class="logo">
+    <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="7" fill="#FFB627"/>
+      <g stroke="#FFB627" stroke-width="2" stroke-linecap="round">
+        <line x1="16" y1="1" x2="16" y2="5"/>
+        <line x1="16" y1="27" x2="16" y2="31"/>
+        <line x1="1" y1="16" x2="5" y2="16"/>
+        <line x1="27" y1="16" x2="31" y2="16"/>
+        <line x1="5.5" y1="5.5" x2="8.3" y2="8.3"/>
+        <line x1="23.7" y1="23.7" x2="26.5" y2="26.5"/>
+        <line x1="5.5" y1="26.5" x2="8.3" y2="23.7"/>
+        <line x1="23.7" y1="8.3" x2="26.5" y2="5.5"/>
+      </g>
+    </svg>
+    RIGHT Solar
+  </div>
+  <nav class="mainnav">
+    <a href="#shop">Shop</a>
+    <a href="#products">Products</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#projects">Projects</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-cta">
+    <button class="icon-btn" id="themeToggle" title="Toggle light / dark mode" aria-label="Toggle theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
+    </button>
+    <button class="icon-btn" id="cartToggle" title="Cart" aria-label="Open cart" style="position:relative;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span id="cartBadge" class="cart-badge">0</span>
+    </button>
+    <a href="#contact" class="btn btn-primary" style="padding:10px 20px; font-size:13.5px;">Get A Quote</a>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <svg class="sun-arc" viewBox="0 0 340 340" fill="none">
+    <path d="M20 220 A 150 150 0 0 1 320 220" stroke="rgba(255,182,39,0.3)" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle cx="170" cy="90" r="26" fill="url(#sunGrad)"/>
+    <defs>
+      <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFD980"/>
+        <stop offset="100%" stop-color="#FF7A45"/>
+      </radialGradient>
+    </defs>
+  </svg>
+  <div class="wrap hero-grid">
+    <div data-reveal>
+      <div class="eyebrow">Pakistan's #1 Solar Importer & Manufacturer</div>
+      <h1>Turn Pakistan's sunlight into <span class="accent">your lowest bill yet</span>.</h1>
+      <p class="lede">RIGHT Solar designs, imports, and installs Tier-1 solar systems for homes, farms, and factories across Pakistan — engineered for the grid we actually have.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get a Free Site Survey</a>
+        <a href="#calculator" class="btn btn-ghost">Estimate My Savings ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>15+ yrs</b><span>Field experience</span></div>
+        <div class="stat"><b>1,200+</b><span>Systems installed</span></div>
+        <div class="stat"><b>90%</b><span>Max bill reduction</span></div>
+      </div>
+    </div>
+
+    <div class="calc-card" data-reveal>
+      <h3>Live Estimate</h3>
+      <div class="calc-title">What's your rooftop worth?</div>
+
+      <div class="field">
+        <label>Monthly electricity bill (PKR)</label>
+        <div class="slider-row">
+          <input type="range" id="billRange" min="5000" max="300000" step="1000" value="45000">
+          <span class="slider-val" id="billVal">45,000</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Property type</label>
+        <select id="propType">
+          <option value="1.0">Residential</option>
+          <option value="1.15">Commercial</option>
+          <option value="1.3">Industrial</option>
+          <option value="1.1">Agricultural</option>
+        </select>
+      </div>
+
+      <div class="calc-result">
+        <div class="r-item"><b id="sysSize">—</b><span>Recommended system (kW)</span></div>
+        <div class="r-item"><b id="monthlySave">—</b><span>Est. monthly savings (PKR)</span></div>
+        <div class="r-item"><b id="payback">—</b><span>Payback period (years)</span></div>
+        <div class="r-item"><b id="co2">—</b><span>CO₂ offset / year (tons)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="photo-strip">
+  <div class="photo-grid">
+    <div class="photo-box" data-reveal>
+      <img src="https://images.unsplash.com/photo-1745187946672-2c1d8cf26a2b?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Rooftop solar panel installation" loading="lazy">
+      <div class="photo-caption"><b>Rooftop installations</b><span>Tier-1 panels, engineered for Pakistan's rooftops</span></div>
+    </div>
+    <div class="photo-box" data-reveal>
+      <img src="https://images.unsplash.com/photo-1756913453779-ea366264b54a?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Large solar panel farm under clear sky" loading="lazy">
+      <div class="photo-caption"><b>Utility-scale arrays</b><span>Ground-mount systems for industrial sites</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>LONGI</span><span>CANADIAN SOLAR</span><span>JA SOLAR</span><span>ASTRONERGY</span><span>YINGLI</span><span>ZNSHINE</span><span>PPIB CERTIFIED</span>
+    <span>LONGI</span><span>CANADIAN SOLAR</span><span>JA SOLAR</span><span>ASTRONERGY</span><span>YINGLI</span><span>ZNSHINE</span><span>PPIB CERTIFIED</span>
+  </div>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>What we supply</div>
+    <h2 data-reveal>Every component, from panel to battery.</h2>
+    <p class="lede" data-reveal>We import and manufacture the full stack — no third-party gaps, no mismatched warranties.</p>
+
+    <div class="card-grid">
+      <div class="p-card" data-reveal>
+        <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        <h4>Solar Panels</h4>
+        <p>Tier-1 mono PERC panels from Longi, JA Solar, Canadian Solar & more, up to 630W.</p>
+      </div>
+      <div class="p-card" data-reveal>
+        <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+        <h4>On-Grid Inverters</h4>
+        <p>High-efficiency string inverters from 3kW to 125kW for net-metered systems.</p>
+      </div>
+      <div class="p-card" data-reveal>
+        <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        <h4>Hybrid Inverters</h4>
+        <p>Grid + battery + solar in one unit, keeping the lights on through loadshedding.</p>
+      </div>
+      <div class="p-card" data-reveal>
+        <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="10" y1="2" x2="10" y2="0"/><line x1="14" y1="2" x2="14" y2="0"/></svg>
+        <h4>Lithium Batteries</h4>
+        <p>Wall-mounted LiFePO4 storage, engineered for daily deep-cycle use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHOP ================= -->
+<section id="shop" style="background:var(--night-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>Buy online</div>
+    <h2 data-reveal>Shop solar equipment directly.</h2>
+    <p class="lede" data-reveal>Add items to your cart and check out — our team confirms stock and delivery once your order comes in.</p>
+
+    <div class="shop-grid">
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <h4>550W Mono PERC Panel</h4>
+        <p class="shop-desc">Tier-1 monocrystalline panel, 21%+ efficiency, 25-year output warranty.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="32000">PKR 32,000</span><span class="shop-unit">per panel</span></div>
+        <button class="add-cart-btn" data-id="panel550" data-name="550W Mono PERC Panel" data-price="32000">Add to Cart</button>
+      </div>
+
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+        <h4>5kW Hybrid Inverter</h4>
+        <p class="shop-desc">Grid + battery + solar in one unit, built-in MPPT, WiFi monitoring.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="210000">PKR 210,000</span><span class="shop-unit">per unit</span></div>
+        <button class="add-cart-btn" data-id="hybrid5kw" data-name="5kW Hybrid Inverter" data-price="210000">Add to Cart</button>
+      </div>
+
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+        <h4>10kW On-Grid Inverter</h4>
+        <p class="shop-desc">High-efficiency string inverter for net-metered residential & commercial systems.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="380000">PKR 380,000</span><span class="shop-unit">per unit</span></div>
+        <button class="add-cart-btn" data-id="ongrid10kw" data-name="10kW On-Grid Inverter" data-price="380000">Add to Cart</button>
+      </div>
+
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="10" y1="2" x2="10" y2="0"/><line x1="14" y1="2" x2="14" y2="0"/></svg></div>
+        <h4>5.12kWh Lithium Battery</h4>
+        <p class="shop-desc">Wall-mounted LiFePO4 storage, engineered for daily deep-cycle use, 6000+ cycles.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="260000">PKR 260,000</span><span class="shop-unit">per unit</span></div>
+        <button class="add-cart-btn" data-id="battery512" data-name="5.12kWh Lithium Battery" data-price="260000">Add to Cart</button>
+      </div>
+
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16M6 20V10l6-5 6 5v10M9 20v-6h6v6"/></svg></div>
+        <h4>Mounting Structure Kit</h4>
+        <p class="shop-desc">Hot-dip galvanized rooftop structure, rated for high wind zones.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="15000">PKR 15,000</span><span class="shop-unit">per kW</span></div>
+        <button class="add-cart-btn" data-id="mount1kw" data-name="Mounting Structure Kit (per kW)" data-price="15000">Add to Cart</button>
+      </div>
+
+      <div class="shop-card" data-reveal>
+        <div class="shop-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="14" r="1.5"/><path d="M12 3v9M8 7l4-4 4 4M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+        <h4>DC Solar Water Pump (2HP)</h4>
+        <p class="shop-desc">Submersible pump matched to tube well depth, no diesel required.</p>
+        <div class="shop-price-row"><span class="shop-price" data-price="145000">PKR 145,000</span><span class="shop-unit">per unit</span></div>
+        <button class="add-cart-btn" data-id="pump2hp" data-name="DC Solar Water Pump (2HP)" data-price="145000">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUTIONS (tabs) ================= -->
+<section id="solutions" style="background:var(--night-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>By sector</div>
+    <h2 data-reveal>Solar built around how you actually use power.</h2>
+
+    <div class="tabs-nav" role="tablist">
+      <button class="tab-btn active" data-tab="res">Residential</button>
+      <button class="tab-btn" data-tab="com">Commercial</button>
+      <button class="tab-btn" data-tab="ind">Industrial</button>
+      <button class="tab-btn" data-tab="agr">Agricultural</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-res">
+      <div class="tab-visual">
+        <svg viewBox="0 0 200 160" fill="none"><path d="M40 100 100 50 160 100V150H40V100Z" stroke="#FFB627" stroke-width="2" fill="none"/><rect x="60" y="60" width="80" height="8" fill="#2BD4A0" opacity="0.6"/><line x1="30" y1="150" x2="170" y2="150" stroke="#93A6C4"/></svg>
+      </div>
+      <div class="tab-copy">
+        <h3>Residential Solar Solution</h3>
+        <p class="lede">Hybrid and on-grid systems sized to your household load, so you stop paying peak-hour rates and start banking surplus units.</p>
+        <ul>
+          <li>Net metering setup & DISCO paperwork handled for you</li>
+          <li>Battery backup options for loadshedding zones</li>
+          <li>10–25 year manufacturer panel warranty</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-com">
+      <div class="tab-visual">
+        <svg viewBox="0 0 200 160" fill="none"><rect x="40" y="50" width="120" height="100" stroke="#FFB627" stroke-width="2" fill="none"/><rect x="55" y="65" width="90" height="10" fill="#2BD4A0" opacity="0.6"/><rect x="55" y="85" width="90" height="10" fill="#2BD4A0" opacity="0.4"/></svg>
+      </div>
+      <div class="tab-copy">
+        <h3>Commercial Solar Solution</h3>
+        <p class="lede">Cut operating costs at retail outlets, offices, and plazas with rooftop or carport arrays sized for daytime demand.</p>
+        <ul>
+          <li>Zero-downtime installation around business hours</li>
+          <li>Remote monitoring dashboard for facility managers</li>
+          <li>Financing options for larger deployments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-ind">
+      <div class="tab-visual">
+        <svg viewBox="0 0 200 160" fill="none"><path d="M30 140V80l25 10V80l25 10V80l25 10V60l40 20v60H30Z" stroke="#FFB627" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="tab-copy">
+        <h3>Industrial Solar Solution</h3>
+        <p class="lede">MW-scale ground and rooftop mounts for mills, cold storage, and manufacturing — engineered for heavy, continuous load.</p>
+        <ul>
+          <li>Custom EPC delivery from feasibility to commissioning</li>
+          <li>Load-matched hybrid design for 3-phase machinery</li>
+          <li>Deployed at textile, rice, and pharma facilities nationwide</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-agr">
+      <div class="tab-visual">
+        <svg viewBox="0 0 200 160" fill="none"><circle cx="100" cy="120" r="6" fill="#2BD4A0"/><rect x="96" y="60" width="8" height="60" fill="#93A6C4"/><path d="M60 60 L100 40 L140 60" stroke="#FFB627" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="tab-copy">
+        <h3>Agricultural Solar Solution</h3>
+        <p class="lede">DC solar pumps matched to your tube well's depth and flow rate — designed to pay back through diesel savings in under two years.</p>
+        <ul>
+          <li>Sized against water table depth & delivery demand</li>
+          <li>Diesel savings of up to PKR 30,000/month per pump</li>
+          <li>Sub-2-year typical payback</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>How it works</div>
+    <h2 data-reveal>From site visit to switched-on, in about a week.</h2>
+    <div class="process-line">
+      <div class="process-track"></div>
+      <div class="process-steps">
+        <div class="p-step" data-n="1"><h5>Site Assessment</h5></div>
+        <div class="p-step" data-n="2"><h5>System Design</h5></div>
+        <div class="p-step" data-n="3"><h5>Approval</h5></div>
+        <div class="p-step" data-n="4"><h5>Installation</h5></div>
+        <div class="p-step" data-n="5"><h5>Commissioning</h5></div>
+        <div class="p-step" data-n="6"><h5>Net Metering</h5></div>
+        <div class="p-step" data-n="7"><h5>Performance Check</h5></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" style="background:var(--night-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>Field-proven</div>
+    <h2 data-reveal>A few systems we've switched on.</h2>
+    <div class="proj-grid">
+      <div class="proj-card" data-reveal><div class="ph">Textile Mill · 600kW</div><span class="proj-tag">Industrial</span><div class="proj-info"><h5>Sadiq Textile Mills</h5><span>Karachi · Ground-mount array</span></div></div>
+      <div class="proj-card" data-reveal><div class="ph">Rice Mill · 1.2MW</div><span class="proj-tag">Industrial</span><div class="proj-info"><h5>Ittefaq Rice Mill</h5><span>Karachi · Rooftop + ground hybrid</span></div></div>
+      <div class="proj-card" data-reveal><div class="ph">Cold Storage · 300kW</div><span class="proj-tag">Commercial</span><div class="proj-info"><h5>MB Cold Storage</h5><span>Sahiwal · On-grid</span></div></div>
+      <div class="proj-card" data-reveal><div class="ph">Pharma Plant · 450kW</div><span class="proj-tag">Industrial</span><div class="proj-info"><h5>Saffron Pharmaceutical</h5><span>Faisalabad · Hybrid</span></div></div>
+      <div class="proj-card" data-reveal><div class="ph">Tube Well · 15kW</div><span class="proj-tag">Agricultural</span><div class="proj-info"><h5>Solar Water Pump</h5><span>Rahim Yar Khan · Off-grid DC</span></div></div>
+      <div class="proj-card" data-reveal><div class="ph">Weaving Unit · 800kW</div><span class="proj-tag">Industrial</span><div class="proj-info"><h5>Mahmood Weaving</h5><span>Faisalabad · Net-metered</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALCULATOR SECTION ANCHOR (full detail) ================= -->
+<section id="calculator">
+  <div class="wrap">
+    <div class="eyebrow" data-reveal>Advanced tool</div>
+    <h2 data-reveal>Solar Size & Savings Calculator</h2>
+    <p class="lede" data-reveal>Drag the slider above in the hero, or use it here — the numbers update instantly, no form submission needed.</p>
+    <p class="lede" style="margin-top:14px; font-size:13px;">Estimates use average Pakistani grid tariffs and Karachi-region irradiance; your actual quote may vary by roof orientation, shading, and DISCO.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <div class="eyebrow" data-reveal>Questions</div>
+    <h2 data-reveal>Have questions? We've got answers.</h2>
+    <div id="faqList">
+      <div class="faq-item open">
+        <div class="faq-q"><span>What kinds of solar systems do you install?</span><span class="plus">+</span></div>
+        <div class="faq-a">On-grid, off-grid, and hybrid systems, customized for homes, commercial facilities, industries, and agricultural sites — including solar water pumping.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>How much can I save on my electricity bill?</span><span class="plus">+</span></div>
+        <div class="faq-a">Most clients see 70–90% reduction depending on energy usage and system size — try the calculator above for a personalized estimate.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you handle installation and maintenance?</span><span class="plus">+</span></div>
+        <div class="faq-a">Yes — our scope covers the full installation process plus ongoing maintenance so your system keeps performing for years.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>How long does installation take?</span><span class="plus">+</span></div>
+        <div class="faq-a">Typically 3–7 days, depending on project size and site conditions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is there a warranty on panels and equipment?</span><span class="plus">+</span></div>
+        <div class="faq-a">Yes — panels and inverters both carry manufacturer warranties, with panel warranties typically running 10 to 25 years.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTE / CONTACT ================= -->
+<section id="contact" class="quote-section">
+  <div class="wrap quote-grid">
+    <div data-reveal>
+      <div class="eyebrow">Get started</div>
+      <h2>Get your personalized solar quote.</h2>
+      <p class="lede">Tell us about your property and typical usage — our team will design a system and follow up within one business day.</p>
+      <div style="margin-top:30px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="icon-btn" style="cursor:default;">📞</div>
+          <div><b>+92 331 2179337</b><br><span style="color:var(--text-lo); font-size:13px;">UAN, Mon–Sat 9am–7pm</span></div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="icon-btn" style="cursor:default;">✉️</div>
+          <div><b>info@rightsolar.pk</b><br><span style="color:var(--text-lo); font-size:13px;">Response within 24 hours</span></div>
+        </div>
+      </div>
+    </div>
+
+    <form class="form-card" data-reveal id="quoteForm">
+      <div class="form-row">
+        <div><label style="font-size:13px; color:var(--text-lo); display:block; margin-bottom:6px;">Full Name</label><input type="text" required placeholder="Your name"></div>
+        <div><label style="font-size:13px; color:var(--text-lo); display:block; margin-bottom:6px;">Phone Number</label><input type="tel" required placeholder="03XX XXXXXXX"></div>
+      </div>
+      <div class="form-row">
+        <div><label style="font-size:13px; color:var(--text-lo); display:block; margin-bottom:6px;">City</label><input type="text" required placeholder="e.g. Karachi"></div>
+        <div><label style="font-size:13px; color:var(--text-lo); display:block; margin-bottom:6px;">System Type</label>
+          <select><option>Residential</option><option>Commercial</option><option>Industrial</option><option>Agricultural</option></select>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div><label style="font-size:13px; color:var(--text-lo); display:block; margin-bottom:6px;">Monthly Consumption (kWh) — optional</label><input type="text" placeholder="e.g. 800"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Request My Quote</button>
+      <p class="form-note">By submitting, you agree to be contacted by our solar consultants about this request.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="logo" style="margin-bottom:14px;">
+          <svg class="logo-mark" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="7" fill="#FFB627"/></svg>
+          RIGHT Solar
+        </div>
+        <p style="color:var(--text-lo); font-size:14px; max-width:280px;">Sustainable energy today, lighting Pakistan's tomorrow.</p>
+        <div class="social-row" style="margin-top:18px;">
+          <a href="#" class="icon-btn" aria-label="Facebook">f</a>
+          <a href="#" class="icon-btn" aria-label="Instagram">ig</a>
+          <a href="#" class="icon-btn" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Franchise</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#solutions">Residential</a></li>
+          <li><a href="#solutions">Commercial</a></li>
+          <li><a href="#solutions">Industrial</a></li>
+          <li><a href="#solutions">Agricultural</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Head Office</h5>
+        <p style="color:var(--text-lo); font-size:14px; line-height:1.7;">Office No. 888/9 E, Shahrah-e-Faisal,<br>Near PTCL Exchange, Karachi</p>
+        <p style="color:var(--text-lo); font-size:14px; margin-top:10px;">+92 331 2179337<br>info@rightsolar.pk</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 RIGHT Solar. All rights reserved.</span>
+      <span>Built with care for Pakistan's grid. <a href="#" id="adminLink" style="text-decoration:underline; opacity:0.6;">Admin</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="float-stack">
+  <button class="fab fab-top" id="toTop" aria-label="Back to top">↑</button>
+  <a class="fab fab-whatsapp" href="https://wa.me/923312179337" target="_blank" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.5 17L2 22l5.2-1.4A8.9 8.9 0 1 0 17.6 6.3ZM12 19.5a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.9.8.8-2.8-.2-.3A7.5 7.5 0 1 1 19.5 12 7.4 7.4 0 0 1 12 19.5Zm4-5.6c-.2-.1-1.3-.6-1.5-.7s-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5.1a6.1 6.1 0 0 1-3-2.6c-.2-.4.2-.4.5-1.2.1-.1 0-.3 0-.4l-.6-1.5c-.2-.4-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2 4.7 4.7 0 0 0 1 2.5 10.6 10.6 0 0 0 4.4 3.9c1.5.6 1.5.5 1.8.4a2.2 2.2 0 0 0 1.5-1.1 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.2-.2-.5-.3Z"/></svg>
+  </a>
+</div>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+
+  <!-- Cart view -->
+  <div id="cartView">
+    <div class="cart-head">
+      <h3>Your Cart</h3>
+      <button class="cart-close" id="cartCloseBtn" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">Your cart is empty.<br>Add a product to get started.</div>
+    </div>
+    <div class="cart-foot" id="cartFoot" style="display:none;">
+      <div class="cart-subtotal"><span>Subtotal</span><b id="cartSubtotal">PKR 0</b></div>
+      <button class="btn btn-primary" style="width:100%; justify-content:center;" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Checkout view -->
+  <div id="checkoutView" style="display:none; flex:1; overflow-y:auto;">
+    <div class="cart-head">
+      <h3>Checkout</h3>
+      <button class="cart-close" id="checkoutCloseBtn" aria-label="Close cart">×</button>
+    </div>
+    <form class="checkout-body" id="checkoutForm">
+      <button type="button" class="back-link" id="backToCart">← Back to cart</button>
+      <div class="order-summary-mini" id="orderSummaryMini"></div>
+
+      <div class="form-row">
+        <div><label>Full Name</label><input type="text" id="coName" required placeholder="Your name"></div>
+        <div><label>Phone Number</label><input type="tel" id="coPhone" required placeholder="03XX XXXXXXX"></div>
+      </div>
+      <div class="form-row full">
+        <div><label>Delivery Address</label><input type="text" id="coAddress" required placeholder="House / street / area"></div>
+      </div>
+      <div class="form-row">
+        <div><label>City</label><input type="text" id="coCity" required placeholder="e.g. Karachi"></div>
+        <div><label>Email (optional)</label><input type="email" id="coEmail" placeholder="you@example.com"></div>
+      </div>
+
+      <label style="margin-bottom:10px;">Payment Method</label>
+      <div class="pay-options">
+        <label class="pay-option"><input type="radio" name="payMethod" value="cod" checked> Cash on Delivery</label>
+        <label class="pay-option"><input type="radio" name="payMethod" value="bank"> Bank Transfer</label>
+        <label class="pay-option"><input type="radio" name="payMethod" value="easypaisa"> Easypaisa / JazzCash</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Place Order</button>
+      <p class="form-note">Our team will call to confirm your order and delivery timeline before dispatch.</p>
+    </form>
+  </div>
+
+  <!-- Success view -->
+  <div id="successView" style="display:none; flex:1; overflow-y:auto;">
+    <div class="cart-head">
+      <h3>Order Placed</h3>
+      <button class="cart-close" id="successCloseBtn" aria-label="Close cart">×</button>
+    </div>
+    <div class="order-success">
+      <div class="tick">✓</div>
+      <h3 style="margin-bottom:10px;">Thank you!</h3>
+      <p style="color:var(--text-lo); font-size:14px; margin-bottom:6px;">Order <b id="orderId" style="color:var(--dawn-amber); font-family:var(--mono);"></b> has been received.</p>
+      <p style="color:var(--text-lo); font-size:13.5px;">A RIGHT Solar representative will call you shortly on the number provided to confirm details.</p>
+      <button class="btn btn-ghost" id="continueShoppingBtn" style="margin-top:24px;">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ADMIN PANEL ================= -->
+<div class="cart-overlay" id="adminOverlay"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="cart-head">
+    <h3 id="adminHeadTitle">Admin Login</h3>
+    <button class="cart-close" id="adminCloseBtn" aria-label="Close admin">×</button>
+  </div>
+
+  <div id="adminLoginView" style="padding:22px;">
+    <label style="display:block; font-size:13px; color:var(--text-lo); margin-bottom:8px;">Enter admin passcode</label>
+    <input type="password" id="adminPasscode" placeholder="Passcode" style="margin-bottom:14px;">
+    <button class="btn btn-primary" id="adminLoginBtn" style="width:100%; justify-content:center;">Log In</button>
+    <p class="form-note" id="adminError" style="color:#FF7A45; display:none;">Incorrect passcode.</p>
+  </div>
+
+  <div id="adminOrdersView" style="display:none; flex:1; overflow-y:auto; padding:18px 22px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <span style="font-size:12.5px; color:var(--text-lo);" id="adminOrderCount">0 orders</span>
+      <button class="cart-item-remove" id="adminRefreshBtn" style="text-decoration:none;">Refresh ↻</button>
+    </div>
+    <div id="adminOrdersList"></div>
+  </div>
+</div>
+
+<script>
+  // ---- Mobile nav toggle ----
+  const menuToggle = document.getElementById('menuToggle');
+  const mainnav = document.querySelector('nav.mainnav');
+  menuToggle.addEventListener('click', () => {
+    const open = mainnav.style.display === 'flex';
+    mainnav.style.display = open ? 'none' : 'flex';
+    mainnav.style.cssText += 'position:fixed; top:70px; left:0; right:0; background:var(--night-2); flex-direction:column; padding:24px; gap:18px; border-bottom:1px solid var(--line);';
+  });
+
+  // ---- Light / Dark mode toggle ----
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+  const moonPath = '<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/>';
+  const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>';
+
+  function applyTheme(theme){
+    root.setAttribute('data-theme', theme);
+    themeIcon.innerHTML = theme === 'light' ? moonPath : sunPath;
+  }
+  let currentTheme = 'dark';
+  themeToggle.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(currentTheme);
+  });
+  applyTheme(currentTheme);
+
+  // ---- Scroll progress + back to top ----
+  const progressBar = document.getElementById('progressBar');
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+    toTop.classList.toggle('show', h.scrollTop > 500);
+  });
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // ---- Reveal on scroll ----
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+
+  // ---- Tabs ----
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // ---- Solar savings calculator ----
+  const billRange = document.getElementById('billRange');
+  const billVal = document.getElementById('billVal');
+  const propType = document.getElementById('propType');
+  const sysSize = document.getElementById('sysSize');
+  const monthlySave = document.getElementById('monthlySave');
+  const payback = document.getElementById('payback');
+  const co2 = document.getElementById('co2');
+
+  function calc(){
+    const bill = +billRange.value;
+    billVal.textContent = bill.toLocaleString();
+    const factor = +propType.value;
+    // rough heuristic: assume avg tariff ~55 PKR/unit, 4.5 sun-hours/day, panel derate
+    const units = bill / 55;
+    const kw = Math.max(1, (units / 30 / 4.5) * factor);
+    const savings = bill * 0.8;
+    const systemCost = kw * 160000; // approx PKR per kW installed
+    const paybackYrs = systemCost / (savings * 12);
+    const co2Tons = kw * 1.2;
+
+    sysSize.textContent = kw.toFixed(1);
+    monthlySave.textContent = Math.round(savings).toLocaleString();
+    payback.textContent = paybackYrs.toFixed(1);
+    co2.textContent = co2Tons.toFixed(1);
+  }
+  billRange.addEventListener('input', calc);
+  propType.addEventListener('change', calc);
+  calc();
+
+  // ---- Quote form (demo submit) ----
+  document.getElementById('quoteForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('button[type=submit]');
+    const original = btn.textContent;
+    btn.textContent = 'Request Sent ✓';
+    btn.style.opacity = '0.8';
+    setTimeout(() => { btn.textContent = original; btn.style.opacity = '1'; this.reset(); calc(); }, 2500);
+  });
+
+  // ============= SHOPPING CART =============
+  let cart = []; // in-memory only, resets on page reload
+
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCloseBtn = document.getElementById('cartCloseBtn');
+  const checkoutCloseBtn = document.getElementById('checkoutCloseBtn');
+  const successCloseBtn = document.getElementById('successCloseBtn');
+  const cartBadge = document.getElementById('cartBadge');
+  const cartBody = document.getElementById('cartBody');
+  const cartFoot = document.getElementById('cartFoot');
+  const cartSubtotal = document.getElementById('cartSubtotal');
+
+  const cartView = document.getElementById('cartView');
+  const checkoutView = document.getElementById('checkoutView');
+  const successView = document.getElementById('successView');
+
+  function fmt(n){ return 'PKR ' + Math.round(n).toLocaleString(); }
+
+  function openCart(){ cartOverlay.classList.add('open'); cartDrawer.classList.add('open'); }
+  function closeCart(){
+    cartOverlay.classList.remove('open'); cartDrawer.classList.remove('open');
+    setTimeout(() => { cartView.style.display='block'; checkoutView.style.display='none'; successView.style.display='none'; }, 350);
+  }
+  cartToggle.addEventListener('click', () => { renderCart(); openCart(); });
+  cartCloseBtn.addEventListener('click', closeCart);
+  checkoutCloseBtn.addEventListener('click', closeCart);
+  successCloseBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+
+  function addToCart(id, name, price, btnEl){
+    const existing = cart.find(i => i.id === id);
+    if(existing){ existing.qty += 1; } else { cart.push({id, name, price, qty:1}); }
+    updateBadge();
+    if(btnEl){
+      const original = btnEl.textContent;
+      btnEl.textContent = 'Added ✓';
+      btnEl.classList.add('added');
+      setTimeout(() => { btnEl.textContent = original; btnEl.classList.remove('added'); }, 1200);
+    }
+  }
+
+  document.querySelectorAll('.add-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      addToCart(btn.dataset.id, btn.dataset.name, +btn.dataset.price, btn);
+    });
+  });
+
+  function updateBadge(){
+    const count = cart.reduce((s,i) => s + i.qty, 0);
+    cartBadge.textContent = count;
+    cartBadge.classList.add('bump');
+    setTimeout(() => cartBadge.classList.remove('bump'), 200);
+  }
+
+  function renderCart(){
+    if(cart.length === 0){
+      cartBody.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Add a product to get started.</div>';
+      cartFoot.style.display = 'none';
+      return;
+    }
+    cartFoot.style.display = 'block';
+    cartBody.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-thumb"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <div class="cart-item-info">
+          <h5>${item.name}</h5>
+          <div class="cart-item-price">${fmt(item.price)}</div>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec" data-id="${item.id}">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" data-action="inc" data-id="${item.id}">+</button>
+          </div>
+          <button class="cart-item-remove" data-action="remove" data-id="${item.id}">Remove</button>
+        </div>
+      </div>
+    `).join('');
+    const subtotal = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    cartSubtotal.textContent = fmt(subtotal);
+
+    cartBody.querySelectorAll('[data-action]').forEach(el => {
+      el.addEventListener('click', () => {
+        const id = el.dataset.id;
+        const item = cart.find(i => i.id === id);
+        if(el.dataset.action === 'inc') item.qty += 1;
+        if(el.dataset.action === 'dec'){ item.qty -= 1; if(item.qty <= 0) cart = cart.filter(i => i.id !== id); }
+        if(el.dataset.action === 'remove') cart = cart.filter(i => i.id !== id);
+        updateBadge();
+        renderCart();
+      });
+    });
+  }
+
+  // ---- Checkout flow ----
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const backToCart = document.getElementById('backToCart');
+  const orderSummaryMini = document.getElementById('orderSummaryMini');
+  const checkoutForm = document.getElementById('checkoutForm');
+  const orderId = document.getElementById('orderId');
+  const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+
+  checkoutBtn.addEventListener('click', () => {
+    if(cart.length === 0) return;
+    cartView.style.display = 'none';
+    checkoutView.style.display = 'flex';
+    const subtotal = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    orderSummaryMini.innerHTML = cart.map(i => `${i.qty} × ${i.name}`).join('<br>') +
+      `<div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--line); color:var(--text-hi); font-weight:600;">Subtotal: ${fmt(subtotal)}</div>`;
+  });
+
+  backToCart.addEventListener('click', () => {
+    checkoutView.style.display = 'none';
+    cartView.style.display = 'block';
+  });
+
+  checkoutForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const submitBtn = this.querySelector('button[type=submit]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Placing order...';
+    submitBtn.disabled = true;
+
+    const id = 'RS-' + Math.floor(10000 + Math.random() * 89999);
+    const order = {
+      id,
+      name: document.getElementById('coName').value,
+      phone: document.getElementById('coPhone').value,
+      address: document.getElementById('coAddress').value,
+      city: document.getElementById('coCity').value,
+      email: document.getElementById('coEmail').value,
+      payMethod: this.querySelector('input[name=payMethod]:checked').value,
+      items: cart.map(i => ({name:i.name, qty:i.qty, price:i.price})),
+      subtotal: cart.reduce((s,i) => s + i.price * i.qty, 0),
+      status: 'new',
+      createdAt: new Date().toISOString()
+    };
+
+    try{
+      await window.storage.set('order:' + id, JSON.stringify(order), true);
+    }catch(err){
+      console.error('Order save failed:', err);
+    }
+
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    orderId.textContent = id;
+    checkoutView.style.display = 'none';
+    successView.style.display = 'flex';
+    cart = [];
+    updateBadge();
+    this.reset();
+  });
+
+  continueShoppingBtn.addEventListener('click', closeCart);
+
+  // ============= ADMIN PANEL =============
+  const ADMIN_PASSCODE = 'rightsolar786';
+  const adminLink = document.getElementById('adminLink');
+  const adminOverlay = document.getElementById('adminOverlay');
+  const adminPanel = document.getElementById('adminPanel');
+  const adminCloseBtn = document.getElementById('adminCloseBtn');
+  const adminLoginView = document.getElementById('adminLoginView');
+  const adminOrdersView = document.getElementById('adminOrdersView');
+  const adminPasscode = document.getElementById('adminPasscode');
+  const adminLoginBtn = document.getElementById('adminLoginBtn');
+  const adminError = document.getElementById('adminError');
+  const adminHeadTitle = document.getElementById('adminHeadTitle');
+  const adminOrdersList = document.getElementById('adminOrdersList');
+  const adminOrderCount = document.getElementById('adminOrderCount');
+  const adminRefreshBtn = document.getElementById('adminRefreshBtn');
+  let adminLoggedIn = false;
+
+  function openAdmin(){ adminOverlay.classList.add('open'); adminPanel.classList.add('open'); }
+  function closeAdmin(){ adminOverlay.classList.remove('open'); adminPanel.classList.remove('open'); }
+
+  adminLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    if(adminLoggedIn){ adminLoginView.style.display='none'; adminOrdersView.style.display='block'; adminHeadTitle.textContent='Orders'; loadOrders(); }
+    else { adminLoginView.style.display='block'; adminOrdersView.style.display='none'; adminHeadTitle.textContent='Admin Login'; }
+    openAdmin();
+  });
+  adminOverlay.addEventListener('click', closeAdmin);
+  adminCloseBtn.addEventListener('click', closeAdmin);
+
+  adminLoginBtn.addEventListener('click', () => {
+    if(adminPasscode.value === ADMIN_PASSCODE){
+      adminLoggedIn = true;
+      adminError.style.display = 'none';
+      adminLoginView.style.display = 'none';
+      adminOrdersView.style.display = 'block';
+      adminHeadTitle.textContent = 'Orders';
+      adminPasscode.value = '';
+      loadOrders();
+    } else {
+      adminError.style.display = 'block';
+    }
+  });
+  adminPasscode.addEventListener('keydown', (e) => { if(e.key === 'Enter') adminLoginBtn.click(); });
+  adminRefreshBtn.addEventListener('click', loadOrders);
+
+  async function loadOrders(){
+    adminOrdersList.innerHTML = '<p style="color:var(--text-lo); font-size:13px;">Loading orders...</p>';
+    try{
+      const listResult = await window.storage.list('order:', true);
+      const keys = (listResult && listResult.keys) ? listResult.keys : [];
+      if(keys.length === 0){
+        adminOrdersList.innerHTML = '<p style="color:var(--text-lo); font-size:13px;">No orders yet.</p>';
+        adminOrderCount.textContent = '0 orders';
+        return;
+      }
+      const orders = [];
+      for(const k of keys){
+        try{
+          const res = await window.storage.get(k, true);
+          if(res && res.value) orders.push(JSON.parse(res.value));
+        }catch(err){ /* skip unreadable key */ }
+      }
+      orders.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+      adminOrderCount.textContent = orders.length + ' order' + (orders.length !== 1 ? 's' : '');
+      adminOrdersList.innerHTML = orders.map(o => `
+        <div class="admin-order-card">
+          <div class="admin-order-top">
+            <div><div class="admin-order-id">${o.id}</div><div class="admin-order-time">${new Date(o.createdAt).toLocaleString()}</div></div>
+            <button class="admin-order-status ${o.status === 'fulfilled' ? 'fulfilled' : ''}" data-id="${o.id}">${o.status === 'fulfilled' ? 'Fulfilled' : 'Mark Fulfilled'}</button>
+          </div>
+          <div class="admin-order-field"><b>Name:</b> ${o.name}</div>
+          <div class="admin-order-field"><b>Phone:</b> ${o.phone}</div>
+          <div class="admin-order-field"><b>Address:</b> ${o.address}, ${o.city}</div>
+          <div class="admin-order-field"><b>Payment:</b> ${o.payMethod}</div>
+          <div class="admin-order-items">${o.items.map(i => `${i.qty} × ${i.name}`).join('<br>')}<br><b style="color:var(--text-hi);">Total: PKR ${o.subtotal.toLocaleString()}</b></div>
+        </div>
+      `).join('');
+
+      adminOrdersList.querySelectorAll('.admin-order-status').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const orderKey = 'order:' + btn.dataset.id;
+          try{
+            const res = await window.storage.get(orderKey, true);
+            const ord = JSON.parse(res.value);
+            ord.status = ord.status === 'fulfilled' ? 'new' : 'fulfilled';
+            await window.storage.set(orderKey, JSON.stringify(ord), true);
+            loadOrders();
+          }catch(err){ console.error('Status update failed:', err); }
+        });
+      });
+    }catch(err){
+      adminOrdersList.innerHTML = '<p style="color:var(--text-lo); font-size:13px;">Could not load orders. Try refreshing.</p>';
+      console.error('Load orders failed:', err);
+    }
+  }
+</script>
+
+</body>
+</html>
