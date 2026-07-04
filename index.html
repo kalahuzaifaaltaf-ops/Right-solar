@@ -5,33 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RIGHT Solar — Pakistan's Trusted Solar Energy Partner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --night:#0B1526;
-    --night-2:#122036;
-    --night-3:#1A2C48;
-    --dawn-amber:#FFB627;
-    --dawn-orange:#FF7A45;
-    --eco-teal:#2BD4A0;
-    --text-hi:#EEF4FF;
-    --text-lo:#93A6C4;
-    --line:rgba(147,166,196,0.16);
-    --radius:14px;
-    --display: 'Space Grotesk', sans-serif;
+    --night:#FFFFFF;
+    --night-2:#F4F5F8;
+    --night-3:#E9EBF1;
+    --dawn-amber:#FF5A1F;
+    --dawn-orange:#FFB020;
+    --eco-teal:#0EA5E9;
+    --text-hi:#14161C;
+    --text-lo:#656C7C;
+    --line:rgba(20,22,28,0.09);
+    --radius:18px;
+    --glass:rgba(255,255,255,0.78);
+    --shadow-sm:0 2px 14px rgba(20,22,28,0.05);
+    --shadow-md:0 20px 48px rgba(20,22,28,0.10);
+    --display: 'Sora', sans-serif;
     --body: 'Inter', sans-serif;
-    --mono: 'JetBrains Mono', monospace;
+    --mono: 'IBM Plex Mono', monospace;
   }
-  html[data-theme="light"]{
-    --night:#F6F4EE;
-    --night-2:#FFFFFF;
-    --night-3:#EDE9DE;
-    --dawn-amber:#E08A1E;
-    --dawn-orange:#D9622E;
-    --eco-teal:#12A47C;
-    --text-hi:#151B26;
-    --text-lo:#5B6478;
-    --line:rgba(21,27,38,0.12);
+  html[data-theme="dark"]{
+    --night:#0D0F13;
+    --night-2:#16191F;
+    --night-3:#1E222A;
+    --dawn-amber:#FF6A2C;
+    --dawn-orange:#FFC24B;
+    --eco-teal:#38BDF8;
+    --text-hi:#F3F4F7;
+    --text-lo:#9199AA;
+    --line:rgba(255,255,255,0.10);
+    --glass:rgba(13,15,19,0.72);
+    --shadow-sm:0 2px 14px rgba(0,0,0,0.3);
+    --shadow-md:0 24px 55px rgba(0,0,0,0.45);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -63,17 +69,27 @@
     cursor:pointer; border:1px solid transparent; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
     font-family:var(--body);
   }
-  .btn-primary{background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-orange)); color:#1A0F02;}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,140,60,0.35);}
-  .btn-ghost{border-color:var(--line); color:var(--text-hi); background:rgba(255,255,255,0.02);}
+  .btn-primary{background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-orange)); color:#FFFFFF;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,90,31,0.35);}
+  .btn-ghost{border-color:var(--line); color:var(--text-hi); background:var(--night-2);}
   .btn-ghost:hover{border-color:var(--dawn-amber); color:var(--dawn-amber);}
+
+  /* ===== Top info bar (slider) ===== */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; height:38px; z-index:110;
+    background:linear-gradient(90deg, var(--dawn-amber), var(--dawn-orange));
+    overflow:hidden; display:flex; align-items:center;
+  }
+  .topbar-track{display:flex; gap:48px; width:max-content; align-items:center; animation:scroll-left 20s linear infinite; padding-left:24px;}
+  .topbar-track a{display:flex; align-items:center; gap:8px; font-family:var(--body); font-size:12.5px; font-weight:600; color:#fff; white-space:nowrap;}
+  .topbar-track svg{width:14px; height:14px; flex-shrink:0;}
 
   /* ===== Header ===== */
   header{
-    position:fixed; top:0; left:0; right:0; z-index:100;
+    position:fixed; top:38px; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 32px; backdrop-filter:blur(14px);
-    background:rgba(11,21,38,0.72); border-bottom:1px solid var(--line);
+    background:var(--glass); border-bottom:1px solid var(--line);
   }
   .logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-size:19px; font-weight:700;}
   .logo-mark{width:30px; height:30px; position:relative;}
@@ -88,10 +104,10 @@
 
   /* ===== Hero ===== */
   .hero{
-    padding:180px 24px 100px;
+    padding:216px 24px 100px;
     background:
-      radial-gradient(ellipse 800px 500px at 15% -10%, rgba(255,182,39,0.18), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(43,212,160,0.12), transparent 60%);
+      radial-gradient(ellipse 800px 500px at 15% -10%, rgba(255,90,31,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(14,165,233,0.10), transparent 60%);
     position:relative;
   }
   .sun-arc{
@@ -116,7 +132,7 @@
   }
   .calc-card::before{
     content:''; position:absolute; top:-40%; right:-40%; width:280px; height:280px; border-radius:50%;
-    background:radial-gradient(circle, rgba(255,182,39,0.25), transparent 70%);
+    background:radial-gradient(circle, rgba(255,90,31,0.20), transparent 70%);
   }
   .calc-card h3{font-size:15px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-lo); margin-bottom:6px; font-family:var(--mono); font-weight:500;}
   .calc-card .calc-title{font-family:var(--display); font-size:22px; color:var(--text-hi); margin-bottom:24px;}
@@ -132,7 +148,7 @@
   }
   select, input[type=text], input[type=tel], input[type=email]{
     width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line);
-    background:rgba(255,255,255,0.03); color:var(--text-hi); font-family:var(--body); font-size:14.5px;
+    background:var(--night-2); color:var(--text-hi); font-family:var(--body); font-size:14.5px;
   }
   select:focus, input:focus{outline:2px solid var(--dawn-amber); outline-offset:1px;}
   .slider-val{font-family:var(--mono); color:var(--dawn-amber); min-width:56px; text-align:right; font-size:14px;}
@@ -145,7 +161,7 @@
 
   /* ===== Cart badge ===== */
   .cart-badge{
-    position:absolute; top:-4px; right:-4px; background:var(--dawn-amber); color:#1A0F02;
+    position:absolute; top:-4px; right:-4px; background:var(--dawn-amber); color:#FFFFFF;
     font-family:var(--mono); font-size:10px; font-weight:700; width:17px; height:17px; border-radius:50%;
     display:flex; align-items:center; justify-content:center; transition:transform .2s ease;
   }
@@ -155,9 +171,10 @@
   .shop-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px;}
   .shop-card{
     background:var(--night-2); border:1px solid var(--line); border-radius:var(--radius);
-    padding:22px; display:flex; flex-direction:column; transition:transform .3s ease, border-color .3s ease;
+    padding:22px; display:flex; flex-direction:column; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    box-shadow:var(--shadow-sm);
   }
-  .shop-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber);}
+  .shop-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber); box-shadow:var(--shadow-md);}
   .shop-thumb{
     aspect-ratio:4/3; border-radius:10px; margin-bottom:16px; display:flex; align-items:center; justify-content:center;
     background:linear-gradient(150deg, var(--night-3), var(--night-2));
@@ -173,8 +190,8 @@
     color:var(--dawn-amber); font-family:var(--body); font-weight:600; font-size:13.5px; cursor:pointer;
     transition:background .25s ease, color .25s ease;
   }
-  .add-cart-btn:hover{background:var(--dawn-amber); color:#1A0F02;}
-  .add-cart-btn.added{background:var(--eco-teal); border-color:var(--eco-teal); color:#06251C;}
+  .add-cart-btn:hover{background:var(--dawn-amber); color:#FFFFFF;}
+  .add-cart-btn.added{background:var(--eco-teal); border-color:var(--eco-teal); color:#052033;}
 
   /* ===== Cart drawer ===== */
   .cart-overlay{
@@ -185,7 +202,7 @@
   .cart-drawer{
     position:fixed; top:0; right:0; bottom:0; width:min(420px, 92vw); background:var(--night-2);
     border-left:1px solid var(--line); z-index:401; display:flex; flex-direction:column;
-    transform:translateX(100%); transition:transform .35s ease;
+    transform:translateX(100%); transition:transform .35s ease; box-shadow:var(--shadow-md);
   }
   .cart-drawer.open{transform:translateX(0);}
   .cart-head{display:flex; align-items:center; justify-content:space-between; padding:22px; border-bottom:1px solid var(--line);}
@@ -217,14 +234,14 @@
   .pay-option input{accent-color:var(--dawn-amber);}
   .order-summary-mini{background:var(--night); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:16px; font-size:13px; color:var(--text-lo);}
   .order-success{text-align:center; padding:40px 22px;}
-  .order-success .tick{width:56px; height:56px; border-radius:50%; background:var(--eco-teal); color:#06251C; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:26px;}
+  .order-success .tick{width:56px; height:56px; border-radius:50%; background:var(--eco-teal); color:#052033; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:26px;}
   .back-link{background:none; border:none; color:var(--dawn-amber); font-size:13px; cursor:pointer; margin-bottom:14px; display:inline-flex; align-items:center; gap:6px;}
 
   /* ===== Admin panel ===== */
   .admin-panel{
     position:fixed; top:0; right:0; bottom:0; width:min(460px, 94vw); background:var(--night-2);
     border-left:1px solid var(--line); z-index:401; display:flex; flex-direction:column;
-    transform:translateX(100%); transition:transform .35s ease;
+    transform:translateX(100%); transition:transform .35s ease; box-shadow:var(--shadow-md);
   }
   .admin-panel.open{transform:translateX(0);}
   .admin-order-card{background:var(--night); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:12px;}
@@ -232,7 +249,7 @@
   .admin-order-id{font-family:var(--mono); color:var(--dawn-amber); font-size:13px;}
   .admin-order-time{font-size:11px; color:var(--text-lo);}
   .admin-order-status{font-size:10.5px; font-family:var(--mono); padding:3px 9px; border-radius:999px; border:1px solid var(--eco-teal); color:var(--eco-teal); cursor:pointer;}
-  .admin-order-status.fulfilled{background:var(--eco-teal); color:#06251C;}
+  .admin-order-status.fulfilled{background:var(--eco-teal); color:#052033;}
   .admin-order-field{font-size:13px; margin-bottom:3px;}
   .admin-order-field b{color:var(--text-lo); font-weight:500;}
   .admin-order-items{font-size:12.5px; color:var(--text-lo); margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);}
@@ -241,7 +258,7 @@
   /* ===== Photo showcase ===== */
   .photo-strip{padding:0 24px 90px;}
   .photo-grid{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr; gap:18px;}
-  .photo-box{position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--line); min-height:340px;}
+  .photo-box{position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--line); min-height:340px; box-shadow:var(--shadow-sm);}
   .photo-box img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; filter:saturate(1.05) contrast(1.03);}
   .photo-caption{position:absolute; left:20px; bottom:20px; right:20px; background:rgba(11,21,38,0.65); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.12); padding:14px 18px; border-radius:12px;}
   .photo-caption b{font-family:var(--display); font-size:15px; display:block; color:#fff;}
@@ -256,9 +273,10 @@
   .card-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:44px;}
   .p-card{
     background:var(--night-2); border:1px solid var(--line); border-radius:var(--radius);
-    padding:26px; transition:transform .3s ease, border-color .3s ease;
+    padding:26px; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    box-shadow:var(--shadow-sm);
   }
-  .p-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber);}
+  .p-card:hover{transform:translateY(-6px); border-color:var(--dawn-amber); box-shadow:var(--shadow-md);}
   .p-card .p-icon{width:40px; height:40px; margin-bottom:18px; color:var(--dawn-amber);}
   .p-card h4{font-size:17px; margin-bottom:8px;}
   .p-card p{font-size:13.5px; color:var(--text-lo);}
@@ -269,7 +287,7 @@
     padding:10px 20px; border-radius:999px; border:1px solid var(--line); background:none;
     color:var(--text-lo); font-family:var(--body); font-size:14px; cursor:pointer; transition:all .25s ease;
   }
-  .tab-btn.active{background:var(--dawn-amber); color:#1A0F02; border-color:var(--dawn-amber); font-weight:600;}
+  .tab-btn.active{background:var(--dawn-amber); color:#FFFFFF; border-color:var(--dawn-amber); font-weight:600;}
   .tab-panel{display:none; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
   .tab-panel.active{display:grid;}
   .tab-visual{
@@ -295,9 +313,9 @@
 
   /* ===== Projects grid ===== */
   .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px;}
-  .proj-card{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:var(--night-2); position:relative; aspect-ratio:4/3;}
+  .proj-card{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:var(--night-2); position:relative; aspect-ratio:4/3; box-shadow:var(--shadow-sm);}
   .proj-card .ph{position:absolute; inset:0; background:linear-gradient(160deg,var(--night-3),var(--night)); display:flex; align-items:center; justify-content:center; color:var(--text-lo); font-family:var(--mono); font-size:12px;}
-  .proj-tag{position:absolute; top:14px; left:14px; background:rgba(11,21,38,0.7); backdrop-filter:blur(6px); padding:5px 12px; border-radius:999px; font-size:11px; font-family:var(--mono); color:var(--dawn-amber); border:1px solid rgba(255,182,39,0.3);}
+  .proj-tag{position:absolute; top:14px; left:14px; background:rgba(11,21,38,0.7); backdrop-filter:blur(6px); padding:5px 12px; border-radius:999px; font-size:11px; font-family:var(--mono); color:var(--dawn-amber); border:1px solid rgba(255,90,31,0.3);}
   .proj-info{position:absolute; bottom:0; left:0; right:0; padding:18px; background:linear-gradient(to top, rgba(11,21,38,0.95), transparent);}
   .proj-info h5{font-size:15px;}
   .proj-info span{font-size:12px; color:var(--text-lo);}
@@ -316,7 +334,7 @@
     border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   }
   .quote-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
-  .form-card{background:var(--night-2); border:1px solid var(--line); border-radius:18px; padding:32px;}
+  .form-card{background:var(--night-2); border:1px solid var(--line); border-radius:18px; padding:32px; box-shadow:var(--shadow-md);}
   .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
   .form-row.full{grid-template-columns:1fr;}
   .form-note{font-size:12px; color:var(--text-lo); margin-top:14px;}
@@ -381,11 +399,48 @@
 
 <div class="progress-bar" id="progressBar"></div>
 
+<div class="topbar">
+  <div class="topbar-track">
+    <a href="tel:+923312179337">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +92 331 2179337
+    </a>
+    <a href="mailto:info@rightsolar.pk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12H2z"/></svg>
+      info@rightsolar.pk
+    </a>
+    <a href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.98H7.9V12h2.5V9.8c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.2.19 2.2.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.44 2.89h-2.28v6.98A10 10 0 0 0 22 12z"/></svg>
+      Facebook: RIGHT Solar
+    </a>
+    <a href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Instagram: RIGHT Solar
+    </a>
+    <a href="tel:+923312179337">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +92 331 2179337
+    </a>
+    <a href="mailto:info@rightsolar.pk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12H2z"/></svg>
+      info@rightsolar.pk
+    </a>
+    <a href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.98H7.9V12h2.5V9.8c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.2.19 2.2.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.44 2.89h-2.28v6.98A10 10 0 0 0 22 12z"/></svg>
+      Facebook: RIGHT Solar
+    </a>
+    <a href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Instagram: RIGHT Solar
+    </a>
+  </div>
+</div>
+
 <header>
   <div class="logo">
     <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="16" r="7" fill="#FFB627"/>
-      <g stroke="#FFB627" stroke-width="2" stroke-linecap="round">
+      <circle cx="16" cy="16" r="7" fill="#FF5A1F"/>
+      <g stroke="#FF5A1F" stroke-width="2" stroke-linecap="round">
         <line x1="16" y1="1" x2="16" y2="5"/>
         <line x1="16" y1="27" x2="16" y2="31"/>
         <line x1="1" y1="16" x2="5" y2="16"/>
@@ -408,6 +463,9 @@
     <a href="#contact">Contact</a>
   </nav>
   <div class="header-cta">
+    <button class="icon-btn" id="adminLink" title="Admin" aria-label="Admin login" style="opacity:0.45;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    </button>
     <button class="icon-btn" id="themeToggle" title="Toggle light / dark mode" aria-label="Toggle theme">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
     </button>
@@ -423,12 +481,12 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
   <svg class="sun-arc" viewBox="0 0 340 340" fill="none">
-    <path d="M20 220 A 150 150 0 0 1 320 220" stroke="rgba(255,182,39,0.3)" stroke-width="1" stroke-dasharray="4 6"/>
+    <path d="M20 220 A 150 150 0 0 1 320 220" stroke="rgba(255,90,31,0.3)" stroke-width="1" stroke-dasharray="4 6"/>
     <circle cx="170" cy="90" r="26" fill="url(#sunGrad)"/>
     <defs>
       <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#FFD980"/>
-        <stop offset="100%" stop-color="#FF7A45"/>
+        <stop offset="0%" stop-color="#FFD37A"/>
+        <stop offset="100%" stop-color="#FF5A1F"/>
       </radialGradient>
     </defs>
   </svg>
@@ -605,7 +663,7 @@
 
     <div class="tab-panel active" id="tab-res">
       <div class="tab-visual">
-        <svg viewBox="0 0 200 160" fill="none"><path d="M40 100 100 50 160 100V150H40V100Z" stroke="#FFB627" stroke-width="2" fill="none"/><rect x="60" y="60" width="80" height="8" fill="#2BD4A0" opacity="0.6"/><line x1="30" y1="150" x2="170" y2="150" stroke="#93A6C4"/></svg>
+        <svg viewBox="0 0 200 160" fill="none"><path d="M40 100 100 50 160 100V150H40V100Z" stroke="#FF5A1F" stroke-width="2" fill="none"/><rect x="60" y="60" width="80" height="8" fill="#0EA5E9" opacity="0.6"/><line x1="30" y1="150" x2="170" y2="150" stroke="#9199AA"/></svg>
       </div>
       <div class="tab-copy">
         <h3>Residential Solar Solution</h3>
@@ -620,7 +678,7 @@
 
     <div class="tab-panel" id="tab-com">
       <div class="tab-visual">
-        <svg viewBox="0 0 200 160" fill="none"><rect x="40" y="50" width="120" height="100" stroke="#FFB627" stroke-width="2" fill="none"/><rect x="55" y="65" width="90" height="10" fill="#2BD4A0" opacity="0.6"/><rect x="55" y="85" width="90" height="10" fill="#2BD4A0" opacity="0.4"/></svg>
+        <svg viewBox="0 0 200 160" fill="none"><rect x="40" y="50" width="120" height="100" stroke="#FF5A1F" stroke-width="2" fill="none"/><rect x="55" y="65" width="90" height="10" fill="#0EA5E9" opacity="0.6"/><rect x="55" y="85" width="90" height="10" fill="#0EA5E9" opacity="0.4"/></svg>
       </div>
       <div class="tab-copy">
         <h3>Commercial Solar Solution</h3>
@@ -635,7 +693,7 @@
 
     <div class="tab-panel" id="tab-ind">
       <div class="tab-visual">
-        <svg viewBox="0 0 200 160" fill="none"><path d="M30 140V80l25 10V80l25 10V80l25 10V60l40 20v60H30Z" stroke="#FFB627" stroke-width="2" fill="none"/></svg>
+        <svg viewBox="0 0 200 160" fill="none"><path d="M30 140V80l25 10V80l25 10V80l25 10V60l40 20v60H30Z" stroke="#FF5A1F" stroke-width="2" fill="none"/></svg>
       </div>
       <div class="tab-copy">
         <h3>Industrial Solar Solution</h3>
@@ -650,7 +708,7 @@
 
     <div class="tab-panel" id="tab-agr">
       <div class="tab-visual">
-        <svg viewBox="0 0 200 160" fill="none"><circle cx="100" cy="120" r="6" fill="#2BD4A0"/><rect x="96" y="60" width="8" height="60" fill="#93A6C4"/><path d="M60 60 L100 40 L140 60" stroke="#FFB627" stroke-width="2" fill="none"/></svg>
+        <svg viewBox="0 0 200 160" fill="none"><circle cx="100" cy="120" r="6" fill="#0EA5E9"/><rect x="96" y="60" width="8" height="60" fill="#9199AA"/><path d="M60 60 L100 40 L140 60" stroke="#FF5A1F" stroke-width="2" fill="none"/></svg>
       </div>
       <div class="tab-copy">
         <h3>Agricultural Solar Solution</h3>
@@ -786,7 +844,7 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="logo" style="margin-bottom:14px;">
-          <svg class="logo-mark" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="7" fill="#FFB627"/></svg>
+          <svg class="logo-mark" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="7" fill="#FF5A1F"/></svg>
           RIGHT Solar
         </div>
         <p style="color:var(--text-lo); font-size:14px; max-width:280px;">Sustainable energy today, lighting Pakistan's tomorrow.</p>
@@ -822,7 +880,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 RIGHT Solar. All rights reserved.</span>
-      <span>Built with care for Pakistan's grid. <a href="#" id="adminLink" style="text-decoration:underline; opacity:0.6;">Admin</a></span>
+      <span>Built with care for Pakistan's grid.</span>
     </div>
   </div>
 </footer>
@@ -898,6 +956,7 @@
       <h3 style="margin-bottom:10px;">Thank you!</h3>
       <p style="color:var(--text-lo); font-size:14px; margin-bottom:6px;">Order <b id="orderId" style="color:var(--dawn-amber); font-family:var(--mono);"></b> has been received.</p>
       <p style="color:var(--text-lo); font-size:13.5px;">A RIGHT Solar representative will call you shortly on the number provided to confirm details.</p>
+      <p style="color:var(--dawn-amber); font-size:13px; margin-top:10px; font-weight:600;">📲 We've opened WhatsApp with your order details — please tap Send so our team is notified right away.</p>
       <button class="btn btn-ghost" id="continueShoppingBtn" style="margin-top:24px;">Continue Shopping</button>
     </div>
   </div>
@@ -915,7 +974,7 @@
     <label style="display:block; font-size:13px; color:var(--text-lo); margin-bottom:8px;">Enter admin passcode</label>
     <input type="password" id="adminPasscode" placeholder="Passcode" style="margin-bottom:14px;">
     <button class="btn btn-primary" id="adminLoginBtn" style="width:100%; justify-content:center;">Log In</button>
-    <p class="form-note" id="adminError" style="color:#FF7A45; display:none;">Incorrect passcode.</p>
+    <p class="form-note" id="adminError" style="color:#E4483A; display:none;">Incorrect passcode.</p>
   </div>
 
   <div id="adminOrdersView" style="display:none; flex:1; overflow-y:auto; padding:18px 22px;">
@@ -934,7 +993,7 @@
   menuToggle.addEventListener('click', () => {
     const open = mainnav.style.display === 'flex';
     mainnav.style.display = open ? 'none' : 'flex';
-    mainnav.style.cssText += 'position:fixed; top:70px; left:0; right:0; background:var(--night-2); flex-direction:column; padding:24px; gap:18px; border-bottom:1px solid var(--line);';
+    mainnav.style.cssText += 'position:fixed; top:108px; left:0; right:0; background:var(--night-2); flex-direction:column; padding:24px; gap:18px; border-bottom:1px solid var(--line);';
   });
 
   // ---- Light / Dark mode toggle ----
@@ -948,7 +1007,7 @@
     root.setAttribute('data-theme', theme);
     themeIcon.innerHTML = theme === 'light' ? moonPath : sunPath;
   }
-  let currentTheme = 'dark';
+  let currentTheme = 'light';
   themeToggle.addEventListener('click', () => {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(currentTheme);
@@ -1170,6 +1229,20 @@
       status: 'new',
       createdAt: new Date().toISOString()
     };
+
+    // ---- Auto-open WhatsApp with pre-filled order details (done first, synchronously, so browsers don't block the popup) ----
+    const waMessage =
+      `🔆 *New Order — RIGHT Solar*\n` +
+      `Order ID: ${id}\n\n` +
+      `*Customer:* ${order.name}\n` +
+      `*Phone:* ${order.phone}\n` +
+      `*Address:* ${order.address}, ${order.city}\n` +
+      `*Payment:* ${order.payMethod}\n\n` +
+      `*Items:*\n` +
+      order.items.map(i => `• ${i.qty} × ${i.name}`).join('\n') +
+      `\n\n*Total: PKR ${order.subtotal.toLocaleString()}*`;
+    const waUrl = 'https://wa.me/923312179337?text=' + encodeURIComponent(waMessage);
+    window.open(waUrl, '_blank');
 
     try{
       await window.storage.set('order:' + id, JSON.stringify(order), true);
